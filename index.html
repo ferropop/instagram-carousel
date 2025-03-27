@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Video Carousel</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 20px;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+        }
+        .carousel {
+            display: flex;
+            overflow-x: auto;
+            padding-bottom: 10px;
+            gap: 20px;
+        }
+        .video {
+            flex: 0 0 80%;
+            position: relative;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            border-radius: 12px;
+            overflow: hidden;
+            background-color: white;
+        }
+        .video iframe {
+            width: 100%;
+            aspect-ratio: 4/5;
+            border: none;
+            display: block;
+        }
+        @media (min-width: 800px) {
+            .video {
+                flex: 0 0 40%;
+            }
+        }
+        /* Hide scrollbar for aesthetic */
+        .carousel::-webkit-scrollbar {
+            display: none;
+        }
+        .carousel {
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="carousel" id="video-carousel"></div>
+
+<script>
+    const instagramLinks = [
+        "https://www.instagram.com/p/DHhRvpvyujM/embed/?utm_source=ig_embed",
+        "https://www.instagram.com/p/DAPDdkuSSQe/embed/?utm_source=ig_embed",
+        "https://www.instagram.com/p/DGhEuVyScww/embed/?utm_source=ig_embed",
+        "https://www.instagram.com/p/DGW1LYTv-0e/embed/?utm_source=ig_embed"
+    ];
+
+    const carousel = document.getElementById('video-carousel');
+
+    instagramLinks.forEach(link => {
+        const videoDiv = document.createElement('div');
+        videoDiv.className = 'video';
+        const iframe = document.createElement('iframe');
+        iframe.src = link;
+        iframe.allow = "autoplay; clipboard-write; encrypted-media; picture-in-picture";
+        iframe.loading = "lazy";
+        videoDiv.appendChild(iframe);
+        carousel.appendChild(videoDiv);
+    });
+</script>
+
+</body>
+</html>
